@@ -8,3 +8,4 @@
 1. scss 사용할 것
 2. 코딩애플 리액트 강의와 병행하며 개발 진행 할 것
    
+sudo npm install reset-css

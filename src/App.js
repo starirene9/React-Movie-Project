@@ -1,10 +1,12 @@
-/*eslint-disable*/
 import './App.css';
 import Footer from "./MainPage/Footer";
 import Detail from "./MainPage/Detail";
+import {useState} from "react";
 
 function App() {
 
+    let [movieImage, setMovieImage] = useState(['비상선언','날아라 차차', '응가맨', '도라이몽']) // 이렇게 배열로 사용
+    let [modal, setModal] = useState(false);
     return (
         <>
             <header className="black-nav">
@@ -36,11 +38,20 @@ function App() {
                     <div className="main-area">
                         <bold>이번 주 인기 영화 TOP 10</bold>
                         <div>
-                            <ul>
-                                <li>3 * 3 사진 공간</li>
-                                <li>3 * 3 사진 공간</li>
-                            </ul>
+                            {
+                                movieImage.map(function (a, i) { // 파라미터 두개 전달 가능 : i는 인덱싱
+                                    return (
+                                        <ul>
+                                            <li onClick={()=>{ setModal(true)}}>{ movieImage[i] }</li>
+                                        {/*    여기 안에 onClick={()=>{setModal(true)}}*/}
+                                        </ul>
+                                    );
+                                })
+                            }
                         </div>
+                        {
+                            modal == true ? <Detail/> : null
+                        }
                         <Detail/>
                     </div>
                 </section>
@@ -50,7 +61,6 @@ function App() {
     )
         ;
 }
-
 
 
 export default App;

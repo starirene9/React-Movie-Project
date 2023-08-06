@@ -54,7 +54,7 @@ function Review() {
     let [review, setReview] = useState(0);
     let [like, setLike] = useState(0);
     // let [movieTitle, setMovieTitle] = useState(['날아라 차차', '응가맨', '도라이몽']) // 이렇게 배열로 사용
-    // let copy = [...영화타이틀]; // 동작원리 ?
+    // let copy = [...영화타이틀];
     // copy[0] = '뽀로로'
     // set영화타이틀(copy); 보다는 원본은 보존하는게 더 안전함 <- 기존 state랑 다르기 때문에
 
@@ -63,7 +63,7 @@ function Review() {
 
     // const Modal =()=>{}  // 에러를 더 잘 띄워 주긴함.
 
-    // modoal 1. html css 디자인 완성 2. ui state 현재상태 저장 3. state에 따라 어떻게 보일지
+    // modal 1. html css 디자인 완성 2. ui state 현재상태 저장 3. state에 따라 어떻게 보일지
     // let[modal, setModal] =useState(false); // 스위치
     // {
     //    modal == true ? <Modal 작명={작명}/> : null  // 기계 => props 전달 방아서 'props.작명' 쓰면 props 전송

@@ -1,10 +1,10 @@
 /* index.css */
 body {
     font-family: Arial, sans-serif;
+    background: black;
 }
 
 h1 {
     color: white;
 }
 
-/* Add other global styles here */

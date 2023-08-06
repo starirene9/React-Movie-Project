@@ -10,3 +10,6 @@
 2. 코딩애플 리액트 강의와 병행하며 개발 진행 할 것
    
 sudo npm install reset-css
+
+npm install react-bootstrap bootstrap
+

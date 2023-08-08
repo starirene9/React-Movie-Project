@@ -2,16 +2,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import Footer from "./MainPage/Footer";
-import Detail from "./MainPage/Detail";
 import {useState} from "react";
-
-
+import data from "./data";
+import {Routes, Route, Link, useNavigate} from 'react-router-dom'
+import Main from "./MainPage/Main";
+import Detail from "./MainPage/Detail";
 
 
 function App() {
 
-    let [movieImage, setMovieImage] = useState(['비상선언','날아라 차차', '응가맨']) // 이렇게 배열로 사용
-    let [modal, setModal] = useState(false);
+    let [movie] = useState(data);
+    // console.log(movie); [{},{},{}]
+    // 복잡한 기호도 시작 기호를 잘 보면 됨
+    let navigate = useNavigate();
+
     return (
         <>
             <header className="black-nav">
@@ -30,60 +34,32 @@ function App() {
                 <div className="below-nav">
                     <nav>
                         <ul className="below-main-nav">
-                            <li>영화</li>
-                            <li style={{color: 'red', fontWeight: "bold"}}>예매</li>
-                            <li>혜택</li>
-                            <li>Together Cinema</li>
+                            <li onClick={()=>{navigate('/movie')}}>영화</li>
+                            <li style={{color: 'red', fontWeight: "bold"}} onClick={()=>{navigate('/booking')}}>예매</li>
+                            <li onClick={()=>{navigate('/benefit')}}>혜택</li>
+                            <li onClick={()=>{navigate('/about')}}>Together Cinema</li>
                         </ul>
                     </nav>
                 </div>
             </header>
-            <div className="body-area">
-                <section>
-                    <div className="main-area">
-                        <bold>이번 주 인기 영화 TOP 10</bold>
-                        {/*이건 부트 스트랩 끌어 옴 */}
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-4" onClick={()=>{setModal(true)}}>
-                                    <img src={process.env.PUBLIC_URL + '/image1.png'} alt="비상선언" width="90%"/>
-                                    {/* 서브 경로에 발행시 문제가 될 수 있으니 위의 경로로 코드를 짜면 됨 */}
-                                    <h2>1</h2>
-                                </div>
-                                <div className="col-md-4" onClick={()=>{setModal(true)}}>
-                                    <img src={process.env.PUBLIC_URL + '/image2.png'} alt="비상선언" width="90%"/>
-                                    <h2>2</h2>
-                                </div>
-                                <div className="col-md-4" onClick={()=>{setModal(true)}}>
-                                    <img src={process.env.PUBLIC_URL + '/image3.png'} alt="비상선언" width="90%"/>
-                                    <h2>3</h2>
-                                </div>
-                            </div>
-                        </div>
-                        {/*<div className="movie-row">*/}
-                        {/*    {*/}
-                        {/*        movieImage.map(function (a, i) { // 파라미터 두개 전달 가능 : i는 인덱싱*/}
-                        {/*            return (*/}
-                        {/*                <div>*/}
-                        {/*                    <div className="movie-img" onClick={()=>{setModal(true)}}></div>*/}
-                        {/*                /!*    style={{backgroundImage : 'url('+ 작명 +')'}}*!/*/}
-                        {/*                /!*    import 작명 from './img/bg.png'; *!/*/}
-                        {/*                </div>*/}
-                        {/*            );*/}
-                        {/*        })*/}
-                        {/*    }*/}
-                        {/*</div>*/}
-                        {
-                            modal == true ? <Detail/> : null
-                        }
-                    </div>
-                </section>
-                <Footer/>
-            </div>
+            {/* Routes 들을 Nav 바 밑으로 옮긴다 */}
+            {/* element를 컴포넌트화 하면 좋음 */}
+            <Routes>
+                <Route path="/" element={<Main movie={data} />}/>
+                <Route path="/movie" element={<Main movie={data} />}/>
+                <Route path="/movie/:id" element={<Detail movie={data}/>}/>
+                {/*영화의 아이디에 따라 Detail 상세 페이지가 전환되어 나타난다. Useparams 사용하면 Detail 페이지에서 id 사용 가능*/}
+                <Route path="/booking" element={<div>예매 페이지임</div>}/>
+                <Route path="/benefit" element={<div>혜택 페이지임</div>}/>
+                <Route path="/about" element={<div>Together Cinema란</div>}/>
+                <Route path="*" element={<div>없는 페이지 입니다</div>}/>
+            </Routes>
+            <Footer/>
         </>
     )
         ;
 }
+
 
 
 export default App;

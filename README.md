@@ -13,3 +13,5 @@ sudo npm install reset-css
 
 npm install react-bootstrap bootstrap
 
+sudo npm install react-router-dom@6
+

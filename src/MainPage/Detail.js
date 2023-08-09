@@ -1,11 +1,17 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './Detail.Module.css';
 import {useParams} from "react-router-dom";
 
 function Detail(props) {
 
+    let[count,setCount] = useState(0);
+
     let {id} = useParams(); // 현재 url의 파라미터가 남음(id)
     // console.log(id); // 1이 남음
+    // let foundMovie = props.movie.find(function(x){
+    //     return x.id === id
+    // }); // 사용시 foundMovie.title
+
     let [trailer, setTrailer] = useState(true);
     let [modal, setModal] = useState(false);
     let [like, setLike] = useState(0);
@@ -128,5 +134,7 @@ function Detail(props) {
 //  copy.unshift(입력값); // 삭제는 copy.splice(i, 1); // 누른 해당 글이 삭제가 됨
 //  set글제목(copy)
 // }}> 글발행 </button>
+
+// Detail.module.css 해서 import 하여 사용하면 됨
 
 export default Detail

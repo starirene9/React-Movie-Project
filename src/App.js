@@ -11,7 +11,7 @@ import Detail from "./MainPage/Detail";
 
 function App() {
 
-    let [movie] = useState(data);
+    let [movie, setMovie] = useState(data);
     // console.log(movie); [{},{},{}]
     // 복잡한 기호도 시작 기호를 잘 보면 됨
     let navigate = useNavigate();

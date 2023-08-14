@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
-import Detail from "./Detail";
-import data from "../data";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 function Main(props) {
 
@@ -23,9 +22,9 @@ function Main(props) {
         }, 20000)
         // 추가2.
         // return () => {
-        //     useEffect 동작하기 전에 특정코드를 실행하고 싶으면 return ()=>{} 안에
-        //     // 기존 타이머를 제거해 주세요 : 재 생성되는 비효율을 막고 버그를 방지
-        //     ClearTimeout(a)  // <- 타이머 제거는 다음과 같이 한다. : clean up function
+        // useEffect 동작하기 전에 특정코드를 실행하고 싶으면 return ()=>{} 안에
+        // 기존 타이머를 제거해 주세요 : 재 생성되는 비효율을 막고 버그를 방지
+        // ClearTimeout(a)  // <- 타이머 제거는 다음과 같이 한다. : clean up function
         // clean up function에는 타이머제거, socket 연결요청제거, ajax요청 중단 이런 코드를 많이 작성합니다.
         // 컴포넌트 unmount 시에도 clean up function 안에 있던게 1회 실행됩니다.
         // }
@@ -35,6 +34,18 @@ function Main(props) {
     // []안에 state 나 변수 넣기 가능 <- [변수]가 변경이 될 때 실행이 된다.
     // useEffect(()=>{ 실행할코드 }, [])
     // [] 비어 있으면 mount 시 1회만 작동
+
+    // 서버에 ajax 요청 : json 을 잘 변환 해줌 
+    // 1. 방법 (GET/POST) : ajax 를 사용 해서 요청
+    // 2. 어떤 자료 (URL) : 서버 개발자에게 물어보기 => 적어 보내라
+    // 1.XMLHttpRequest 2.fetch() 3. axios 라이브러리 사용 : sudo npm install axios
+    // ajax Get 요청은 axios.get('url').then((result)=>{result.data}).catch(()=>{//실패했을 때 코드})
+    // 전송시에는 axios.post('url', {name : 'GU'}) 이렇게 사용하면 됨
+    // url 두개 보내고 싶으면?
+    // Promise.all([axios.get('/url1'), axios.get('/url2')]]
+    // .then(()=>{}) 이런 식으로 하면 됨
+
+
 
     return (
         <>
@@ -63,7 +74,25 @@ function Main(props) {
                                                      alt={props.movie[i].title} width="90%"/>
                                                 {/* 서브 경로에 발행시 문제가 될 수 있으니 위의 경로로 코드를 짜면 됨 */}
                                                 <h2>{props.movie[i].id}</h2>
-                                                <button>예매하기</button>
+                                                <button onClick={(e) => {
+                                                    // 로딩 중 UI 띄우기
+                                                    e.stopPropagation()
+                                                    axios.get('https://codingapple1.github.io/shop/data2.json')
+                                                        .then((result) => {
+                                                            console.log(result.data) // [{},{},{}]
+                                                            console.log(props.movie) //  [{},{},{}]
+                                                            // 목표는 object 추가하기, How? 대괄호 벗겨 주는 ...문법 사용
+                                                            // let copy = [...props.movie, ...result.data];
+                                                            // props.setMovie(copy);
+                                                            // 로딩 중 UI 숨기기
+                                                        })
+                                                        .catch(() => {
+                                                            // 로딩 중 UI 숨기기
+                                                        console.log('가져오기 실패함');
+                                                        //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
+                                                    })
+                                                }}>예매하기
+                                                </button>
                                             </div>
                                         );
                                     })

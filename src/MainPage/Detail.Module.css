@@ -16,3 +16,14 @@ button {
     margin-right: 3px;
     font-weight: bold;
 }
+
+.start {
+    opacity : 0;
+    /*transform: scale(0);*/
+}
+
+.end {
+    opacity: 1;
+    /*transform: scale(1);*/
+    transition : opacity 0.5s;
+}

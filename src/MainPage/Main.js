@@ -35,7 +35,7 @@ function Main(props) {
     // useEffect(()=>{ 실행할코드 }, [])
     // [] 비어 있으면 mount 시 1회만 작동
 
-    // 서버에 ajax 요청 : json 을 잘 변환 해줌 
+    // 서버에 ajax 요청 : json 을 잘 변환 해줌
     // 1. 방법 (GET/POST) : ajax 를 사용 해서 요청
     // 2. 어떤 자료 (URL) : 서버 개발자에게 물어보기 => 적어 보내라
     // 1.XMLHttpRequest 2.fetch() 3. axios 라이브러리 사용 : sudo npm install axios

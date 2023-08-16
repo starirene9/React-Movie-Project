@@ -19,7 +19,7 @@ function Main(props) {
             // document.querySelector('.alert').style.display = 'block';
             // display 를 block 으로 해야 함. but React 는 이렇게 쓰지않고 스위치..!
             setAlert(false);
-        }, 20000)
+        }, 10000)
         // 추가2.
         // return () => {
         // useEffect 동작하기 전에 특정코드를 실행하고 싶으면 return ()=>{} 안에
@@ -55,9 +55,9 @@ function Main(props) {
                         {
                             alert ?
                                 <div className="alert alert-warning" style={{fontWeight: 'bold', color: 'red'}}>한정 파격
-                                    특가! 20초 이내 예매하기 누르면 영화 반값! </div> : null
+                                    특가! 10초 이내 예매하기 누르면 영화 반값! </div> : null
                         }
-                        <bold>이번 주 인기 영화 TOP 10</bold>
+                        <h1 className="h1-style">이번 주 인기 영화 TOP 10</h1>
                         {/*이건 부트 스트랩 끌어 옴 */}
                         {/*컴포넌트화 해서 map으로 돌려보기 */}
                         <div className="container">
@@ -77,20 +77,20 @@ function Main(props) {
                                                 <button onClick={(e) => {
                                                     // 로딩 중 UI 띄우기
                                                     e.stopPropagation()
-                                                    axios.get('https://codingapple1.github.io/shop/data2.json')
-                                                        .then((result) => {
-                                                            console.log(result.data) // [{},{},{}]
-                                                            console.log(props.movie) //  [{},{},{}]
-                                                            // 목표는 object 추가하기, How? 대괄호 벗겨 주는 ...문법 사용
-                                                            // let copy = [...props.movie, ...result.data];
-                                                            // props.setMovie(copy);
-                                                            // 로딩 중 UI 숨기기
-                                                        })
-                                                        .catch(() => {
-                                                            // 로딩 중 UI 숨기기
-                                                        console.log('가져오기 실패함');
-                                                        //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
-                                                    })
+                                                    // axios.get('https://codingapple1.github.io/shop/data2.json')
+                                                    //     .then((result) => {
+                                                    //         console.log(result.data) // [{},{},{}]
+                                                    //         console.log(props.movie) //  [{},{},{}]
+                                                    //         // 목표는 object 추가하기, How? 대괄호 벗겨 주는 ...문법 사용
+                                                    //         // let copy = [...props.movie, ...result.data];
+                                                    //         // props.setMovie(copy);
+                                                    //         // 로딩 중 UI 숨기기
+                                                    //     })
+                                                    //     .catch(() => {
+                                                    //         // 로딩 중 UI 숨기기
+                                                    //     console.log('가져오기 실패함');
+                                                    //     //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
+                                                    // })
                                                 }}>예매하기
                                                 </button>
                                             </div>

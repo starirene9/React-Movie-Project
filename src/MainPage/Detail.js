@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import './Detail.Module.css';
 import {useParams} from "react-router-dom";
-import {clear} from "@testing-library/user-event/dist/clear";
 
 function Detail(props) {
 

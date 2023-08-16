@@ -7,6 +7,7 @@ import data from "./data";
 import {Routes, Route, Link, useNavigate} from 'react-router-dom'
 import Main from "./MainPage/Main";
 import Detail from "./MainPage/Detail";
+import Booking from "./Booking/Booking";
 
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
                 <Route path="/movie" element={<Main movie={data} />}/>
                 <Route path="/movie/:id" element={<Detail movie={data}/>}/>
                 {/*영화의 아이디에 따라 Detail 상세 페이지가 전환되어 나타난다. Useparams 사용하면 Detail 페이지에서 id 사용 가능*/}
-                <Route path="/booking" element={<div>예매 페이지임</div>}/>
+                <Route path="/booking" element={<Booking data={data}/>}/>
                 <Route path="/benefit" element={<div>혜택 페이지임</div>}/>
                 <Route path="/about" element={<div>Together Cinema란</div>}/>
                 <Route path="*" element={<div>없는 페이지 입니다</div>}/>

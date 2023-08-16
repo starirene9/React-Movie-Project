@@ -17,4 +17,6 @@ sudo npm install react-router-dom@6
 
 sudo npm install axios
 
+sudo npm install @reduxjs/toolkit react-redux
+
 

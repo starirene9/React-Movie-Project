@@ -20,6 +20,7 @@ body {
 
 .cine-title {
   /*border: 1px solid yellow;*/
+  margin: 30px;
 }
 
 .top-main-nav1 {
@@ -33,10 +34,12 @@ body {
 }
 
 .top-main-nav2 {
+  font-size: 1.2em;
   width: 100%;
   display: flex;
   justify-content : space-around;
-  align-items: center;
+  /*align-items: center;*/
+  margin-top: 30px;
   /*border : 1px solid red;*/
 }
 
@@ -52,6 +55,7 @@ body {
 
 .below-main-nav {
   /*color: red;*/
+  margin-top: 20px;
   display: flex;
   justify-content: space-around;
   cursor : pointer;
@@ -59,7 +63,7 @@ body {
 }
 
 .below-main-nav > *:hover {
-  color : #55dad2;
+  color : #e8e85b;
   font-weight: bold;
 }
 

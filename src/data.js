@@ -8,7 +8,8 @@ let data = [
         src : "https://www.youtube.com/embed/oGZRqMR_KOw?autoplay=1",
         reviewCount : 200,
         totalRate : 4.1,
-        like : 100
+        like : 100,
+        age : "15+"
     },
     {
         id : '2',
@@ -19,7 +20,8 @@ let data = [
         src : "https://www.youtube.com/embed/QOiE1hOjbDQ",
         reviewCount : 300,
         totalRate : 4.5,
-        like : 500
+        like : 500,
+        age : "All"
     },
     {
         id : '3',
@@ -30,7 +32,44 @@ let data = [
         src : "https://www.youtube.com/embed/LhCKXJNGzN8",
         reviewCount : 50,
         totalRate : 3.8,
-        like : 80
+        like : 80,
+        age : "18+"
+    },
+    {
+        id : '4',
+        title : "해리포터와 마법사의 돌",
+        genre : "어드벤처, 판타지, 키즈",
+        content : "이모네 벽장에서 생활하며 구박받던 해리. 11살 생일에 호그와트 마법학교 입학 초대장을 받는다. 거인 해그리드와 함께 떠난 마법 세계에서 론과 헤르미온느를 만나 모험을 시작한다. 부모님을 살해한 볼드모트가 마법사의 돌을 차지하는 것을 막아야 한다.",
+        actors : "다니엘 래드클리프, 루퍼트 그린트, 엠마 왓슨, 로비 콜트레인, 리처드 해리스, 앨런 릭먼, 이안 하트, 톰 펠튼, 매튜 루이스, 존 허트, 매기 스미스, 랄프 파인즈, 리차드 그리피스, 피오나 쇼우, 해리 멜링, 션 비거스태프",
+        src : "https://www.youtube.com/embed/7XfnlcnJo4k",
+        reviewCount : 100,
+        totalRate : 4.6,
+        like : 80,
+        age : "All"
+    },
+    {
+        id : '5',
+        title : "미션 임파서블",
+        genre : "어드벤처, 액션, 스릴러 ",
+        content :"IMF가 해체되면서 이단 헌트와 그의 팀은 고도로 숙련된 특수 요원들로 구성된 신디케이트라는 거대 조직과 맞선다. 이단은 영국 요원 일사 파우스트와 협력하여 역대 가장 불가능한 임무를 수행한다.",
+        actors : "톰 크루즈, 제레미 레너, 사이먼 페크, 레베카 퍼거슨, 빙 라메스, 션 해리스, 알렉 볼드윈",
+        src : "https://www.youtube.com/embed/avz06PDqDbM",
+        reviewCount : 80,
+        totalRate : 4.0,
+        like : 120,
+        age : "18+"
+    },
+    {
+        id : '6',
+        title : "분노의 질주 : 라이드 오어 다이",
+        genre : "액션, 어드벤처, 스릴러, 드라마 장르, 범죄",
+        content : "범법자의 신분으로 경찰에게 쫓기는 도미닉은 죽은 연인 레티의 복수를 위해 LA로 돌아온다. 한편, LA 최대 갱단의 두목을 쫓던 브라이언은 사건의 중심에 자신의 친구이기도 했던 레티의 죽음이 연관되어 있음을 직감한다. 위장 잠입한 갱단 소굴에서 다시 만난 도미닉과 브라이언. 서로 쫓고 쫓기는 경찰과 도망자의 관계이지만, 서로의 우정과 믿음에 이끌린 두 사람은 연인과 친구의 복수를 위해 잠시 손을 잡는다.",
+        actors : "빈 디젤, 폴 워커, 미셸 로드리게스, 조다나 브루스터, 존 오티즈, 라즈 알론소, 갤 가돗, 잭 콘리, 쉬어 위햄, 라이자 라피라, 테고 칼데론, 돈 오마르, 미르타 미셀, 그렉 사이프스",
+        src : "https://www.youtube.com/embed/zmNRHgRG3lo",
+        reviewCount : 200,
+        totalRate : 4.7,
+        like : 200,
+        age : "18+"
     },
 
 ]

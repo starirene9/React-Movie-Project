@@ -1,8 +1,16 @@
 import {useEffect, useState} from "react";
 import './Detail.Module.css';
 import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {changeReview} from "../store";
 
 function Detail(props) {
+
+
+    let reviews = useSelector((state) => state.reviews)
+    console.log(reviews);
+    let dispatch = useDispatch(); // store.js에 함수 요청하는 함수
+    // dispatch(changeReview()) 이렇게 사용함
 
     let [count, setCount] = useState(0);
 
@@ -73,6 +81,7 @@ function Detail(props) {
                     }}>미리보기
                     </button>
                     <button className="tab" onClick={(e) => {
+                        dispatch(changeReview())
                         e.stopPropagation();
                         setModal(!modal)
                     }}>리뷰
@@ -110,7 +119,7 @@ function Detail(props) {
                                             <option>낮은 평점순</option>
                                         </select>
                                         <div>⭐⭐⭐⭐⭐</div>
-                                        <div>영화가 너무 즐거웠습니다.</div>
+                                        <div>{reviews}</div>
                                         <div>로그인아이디, 날짜</div>
                                         <span onClick={(e) => {
                                             e.stopPropagation();

@@ -2,20 +2,26 @@ import {Nav, Tab, Table, Tabs} from "react-bootstrap";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {increase} from "../store";
 
 function Booking({data}) {
+
+
+    let locations = useSelector((state) => state.locations)
+    let user = useSelector((state) => state.user)
+    // console.log(user);
+
+    // 간단한 프로젝트는 props , 공유가 필요하고 복잡해 지는 것만 redux 사용
+    // 모든 state를 의미해서 return state.user 하면 원하는 것만 가져다 쓸 수 있음
+    // console.log(locations.서울[0]) //이촌동 이런식으로 가져다 쓰면 됨
+
+    let dispatch = useDispatch();
 
     let [selectedMovie, setSelectedMovie] = useState('');
     let [selectedLocation, setSelectedLocation] = useState('');
     let [selectedDate, setSelectedDate] = useState(null);
     let [selectedTime, setSelectedTime] = useState('');
-
-    const locations = {
-        서울: ['이촌동', '태릉입구', '명동', '강남역'],
-        경기: ['남양주', '안산', '용인'],
-        강원: ['춘천', '화천', '철안 군부대'],
-        부산: ['서면역', '해운대 바다극장', '부산대'],
-    };
 
     const handleLocationClick = (location) => {
         setSelectedLocation(location);
@@ -25,6 +31,10 @@ function Booking({data}) {
         <>
             <Table striped bordered hover variant="dark">
                 <thead>
+                <tr>{user.name} 님의 예매 현황
+                    <br/>보유 포인트 : {user.point}점
+                    <button style={{ backgroundColor :'blue'}} onClick={()=>{dispatch(increase(10))}}>보너스 버튼!</button>
+                </tr>
                 <tr>
                     <th>영화</th>
                     <th>극장</th>

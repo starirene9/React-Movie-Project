@@ -4,9 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {increase} from "../store";
+import button from "bootstrap/js/src/button";
 
 function Booking({data}) {
-
 
     let locations = useSelector((state) => state.locations)
     let user = useSelector((state) => state.user)
@@ -23,9 +23,22 @@ function Booking({data}) {
     let [selectedDate, setSelectedDate] = useState(null);
     let [selectedTime, setSelectedTime] = useState('');
 
+    let [buttonDisabled, setButtonDisabled] = useState(false);
+    let [buttonStyle, setButtonStyle] = useState({ backgroundColor: 'blue' });
+
     const handleLocationClick = (location) => {
         setSelectedLocation(location);
     };
+
+    const handleButtonClick = () => {
+        if (!buttonDisabled) { // true
+            dispatch(increase(10)); // 10 증가
+
+            setButtonDisabled(true); // true 로 유지하고
+
+            setButtonStyle({backgroundColor: 'gray'}) //배경을 gray 칼라로 변경
+        }
+    }
 
     return (
         <>
@@ -33,7 +46,10 @@ function Booking({data}) {
                 <thead>
                 <tr>{user.name} 님의 예매 현황
                     <br/>보유 포인트 : {user.point}점
-                    <button style={{ backgroundColor :'blue'}} onClick={()=>{dispatch(increase(10))}}>보너스 버튼!</button>
+                    <button style={buttonStyle}
+                            onClick={handleButtonClick}
+                            disabled={buttonDisabled}
+                    >보너스 버튼!</button>
                 </tr>
                 <tr>
                     <th>영화</th>
@@ -55,7 +71,10 @@ function Booking({data}) {
                                     data.map((a, i) => {
                                         return (
                                             <>
-                                                <div>{a.id}. {a.title} &nbsp;
+                                                <div onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setSelectedMovie(e.target.textContent);
+                                                }}>{a.id}. {a.title} &nbsp;
                                                     <span style={{
                                                         color: 'orange',
                                                         border: '2px solid red',
@@ -75,7 +94,11 @@ function Booking({data}) {
                                         .slice()
                                         .sort((a, b) => a.title.localeCompare(b.title))
                                         .map((a, i) => (
-                                            <div key={a.id}>
+                                            <div key={a.id} onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedMovie(e.target.textContent);
+                                                // console.log(e.target.textContent)
+                                            }}>
                                                 {a.title} &nbsp;
                                                 <span style={{
                                                     color: 'orange',
@@ -159,7 +182,8 @@ function Booking({data}) {
                 </tbody>
             </Table>
         </>
-    );
+    )
+        ;
 }
 
 export default Booking

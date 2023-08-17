@@ -5,9 +5,13 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {increase} from "../store";
 import button from "bootstrap/js/src/button";
+import {useNavigate} from "react-router-dom";
 
 function Booking({data}) {
+    // 모든 항목 클릭 후 좌석 예매 페이지 이동
+    let navigate = useNavigate();
 
+    // 리덕스 사용
     let locations = useSelector((state) => state.locations)
     let user = useSelector((state) => state.user)
     // console.log(user);
@@ -15,7 +19,7 @@ function Booking({data}) {
     // 간단한 프로젝트는 props , 공유가 필요하고 복잡해 지는 것만 redux 사용
     // 모든 state를 의미해서 return state.user 하면 원하는 것만 가져다 쓸 수 있음
     // console.log(locations.서울[0]) //이촌동 이런식으로 가져다 쓰면 됨
-
+    // 리덕스 수정시 dispatch 필요
     let dispatch = useDispatch();
 
     let [selectedMovie, setSelectedMovie] = useState('');
@@ -23,6 +27,7 @@ function Booking({data}) {
     let [selectedDate, setSelectedDate] = useState(null);
     let [selectedTime, setSelectedTime] = useState('');
 
+    // 보너스 버튼
     let [buttonDisabled, setButtonDisabled] = useState(false);
     let [buttonStyle, setButtonStyle] = useState({ backgroundColor: 'blue' });
 
@@ -37,6 +42,15 @@ function Booking({data}) {
             setButtonDisabled(true); // true 로 유지하고
 
             setButtonStyle({backgroundColor: 'gray'}) //배경을 gray 칼라로 변경
+        }
+    }
+    // 좌석 페이지 이동 조건과 함수
+    const canNavigate = selectedMovie && selectedLocation && selectedDate && selectedTime;
+    const handleSeatSelectionClick = () => {
+        if (canNavigate) {
+            navigate('/booking/seat');
+        } else {
+            alert('위의 항목을 모두 선택하셔야 좌석 예매 페이지로 이동합니다.');
         }
     }
 
@@ -73,7 +87,7 @@ function Booking({data}) {
                                             <>
                                                 <div onClick={(e) => {
                                                     e.stopPropagation();
-                                                    setSelectedMovie(e.target.textContent);
+                                                    setSelectedMovie(a.title);
                                                 }}>{a.id}. {a.title} &nbsp;
                                                     <span style={{
                                                         color: 'orange',
@@ -96,7 +110,7 @@ function Booking({data}) {
                                         .map((a, i) => (
                                             <div key={a.id} onClick={(e) => {
                                                 e.stopPropagation();
-                                                setSelectedMovie(e.target.textContent);
+                                                setSelectedMovie(a.title);
                                                 // console.log(e.target.textContent)
                                             }}>
                                                 {a.title} &nbsp;
@@ -169,7 +183,7 @@ function Booking({data}) {
                         <span style={{color: 'yellow'}}>{selectedMovie}을 선택하셨습니다.</span>
                     </td>
                     <td>
-                        <span style={{color: 'yellow'}}>{selectedLocation}</span>
+                        <span style={{color: 'yellow'}}>{selectedMovie && selectedLocation}</span>
                     </td>
                     <td>
                         <span
@@ -178,6 +192,10 @@ function Booking({data}) {
                     <td>
                         <span style={{color: 'yellow'}}>{selectedDate && selectedTime}</span>
                     </td>
+                </tr>
+                <tr>
+                    <td colSpan="4" style={{color:'red', textAlign :'center', fontWeight:'bolder'}}
+                    onClick={handleSeatSelectionClick}>좌석 선택하기</td>
                 </tr>
                 </tbody>
             </Table>

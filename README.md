@@ -4,11 +4,13 @@
 </div>
 <br>
 <br>
+<p align="center">
  🍃 🌴 자연 & 사람과 함께 하는 Together Cinema에 방문해주셔서 감사합니다. 👨‍👩‍👦 🙆🏻‍♀️<br><br>
 리드미 업데이트 예정 중에 있으며 세 페이지 정도 완성 되면, 보시기 편하도록 starirene9.io에 올릴 예정입니다. <br>
 현재 저는 React, Redux 기술을 활용한 영화 예매 사이트 개인 프로젝트 개발 중이며, Together Cinema의 가치관을 담은 영상과 포스터 제작 중에 있습니다.<br>
 혼자 학습하며 진행하다 보니, 시간이 좀 걸릴텐데 양해 부탁드리며 개발 진행 과정은 하단의 블로그에서 구경하실 수 있습니다. <br>
-<link https://bitnara999.com/%eb%a6%ac%ec%95%a1%ed%8a%b8%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%ec%98%81%ed%99%94-%ec%98%88%eb%a7%a4-%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%84%a4%ea%b3%84-%ec%8b%9c%ec%9e%91/>
+ <a href="https://bitnara999.com/%eb%a6%ac%ec%95%a1%ed%8a%b8%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%ec%98%81%ed%99%94-%ec%98%88%eb%a7%a4-%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%84%a4%ea%b3%84-%ec%8b%9c%ec%9e%91/" target="_blank">[⭐️ Bitnara999 Blog]</a>  👈 Click!
+ </p>
 <br>
 <br>
 ⭐️ 이게 무슨 프로젝트에용~? <br>
@@ -27,7 +29,7 @@
  <br>
 이상 입니다.🩷 <br>
 방문해 주셔서 감사합니다. 🩷 <br>
-속히 개발하여 완성본을 제 io에 올리도록 하겠습니다.<br>
+속히 개발하여 완성본을 제 io에 올리도록 하겠습니다. 🩷<br>
 <br>
 sudo npm install reset-css
 

@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {addItem} from "../store";
 
 function Main(props) {
 
@@ -8,6 +10,9 @@ function Main(props) {
     let navigate = useNavigate();
     //  페이지 이동을 도와줌
     let [alert, setAlert] = useState(true);
+
+    let state = useSelector((state) => state);
+    let dispatch = useDispatch();
 
     useEffect(() => {
         // mount(페이지 장착), update(재랜더링시 : 수정/변경), unmount (삭제 시 실행)
@@ -46,7 +51,6 @@ function Main(props) {
     // .then(()=>{}) 이런 식으로 하면 됨
 
 
-
     return (
         <>
             <div className="body-area">
@@ -75,22 +79,10 @@ function Main(props) {
                                                 {/* 서브 경로에 발행시 문제가 될 수 있으니 위의 경로로 코드를 짜면 됨 */}
                                                 <h2>{props.movie[i].id}</h2>
                                                 <button onClick={(e) => {
-                                                    // 로딩 중 UI 띄우기
                                                     e.stopPropagation()
-                                                    // axios.get('https://codingapple1.github.io/shop/data2.json')
-                                                    //     .then((result) => {
-                                                    //         console.log(result.data) // [{},{},{}]
-                                                    //         console.log(props.movie) //  [{},{},{}]
-                                                    //         // 목표는 object 추가하기, How? 대괄호 벗겨 주는 ...문법 사용
-                                                    //         // let copy = [...props.movie, ...result.data];
-                                                    //         // props.setMovie(copy);
-                                                    //         // 로딩 중 UI 숨기기
-                                                    //     })
-                                                    //     .catch(() => {
-                                                    //         // 로딩 중 UI 숨기기
-                                                    //     console.log('가져오기 실패함');
-                                                    //     //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
-                                                    // })
+                                                    navigate('/booking')
+                                                    // dispatch(addItem({type: '테스트', count: 100}))
+                                               음
                                                 }}>예매하기
                                                 </button>
                                             </div>
@@ -113,3 +105,17 @@ function Main(props) {
 
 export default Main
 
+// axios.get('https://codingapple1.github.io/shop/data2.json')
+//     .then((result) => {
+//         console.log(result.data) // [{},{},{}]
+//         console.log(props.movie) //  [{},{},{}]
+//         // 목표는 object 추가하기, How? 대괄호 벗겨 주는 ...문법 사용
+//         // let copy = [...props.movie, ...result.data];
+//         // props.setMovie(copy);
+//         // 로딩 중 UI 숨기기
+//     })
+//     .catch(() => {
+//         // 로딩 중 UI 숨기기
+//     console.log('가져오기 실패함');
+//     //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
+// })

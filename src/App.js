@@ -22,7 +22,7 @@ function App() {
         <>
             <header className="black-nav">
                 <div className="top-nav">
-                    <h1 className="cine-title">Together Cinema&nbsp;<span
+                    <h1 className="cine-title" onClick={()=>{navigate('/')}}>Together Cinema&nbsp;<span
                         style={{color: 'lightgoldenrodyellow', fontSize: 'small'}}> ⭐  b i t n a r a</span></h1>
                     <nav className="top-main-nav1">
                         <ul className="top-main-nav2">

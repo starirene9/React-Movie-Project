@@ -14,7 +14,9 @@ function Booking({data}) {
     // 리덕스 사용
     let locations = useSelector((state) => state.locations)
     let user = useSelector((state) => state.user)
-    // console.log(user);
+    let movies = useSelector((state)=> state.movies)
+    console.log(movies[0].id); // 이런식으로 사용해야함
+
 
     // 간단한 프로젝트는 props , 공유가 필요하고 복잡해 지는 것만 redux 사용
     // 모든 state를 의미해서 return state.user 하면 원하는 것만 가져다 쓸 수 있음
@@ -37,7 +39,7 @@ function Booking({data}) {
 
     const handleButtonClick = () => {
         if (!buttonDisabled) { // true
-            dispatch(increase(10)); // 10 증가
+            dispatch(increase(100)); // 10 증가
 
             setButtonDisabled(true); // true 로 유지하고
 
@@ -81,20 +83,21 @@ function Booking({data}) {
                             className="mb-3"
                         >
                             <Tab eventKey="예매율순" title="예매율순">
+                                {/*Redux*/}
                                 {
-                                    data.map((a, i) => {
+                                    movies.map((a, i) => {
                                         return (
                                             <>
                                                 <div onClick={(e) => {
                                                     e.stopPropagation();
-                                                    setSelectedMovie(a.title);
-                                                }}>{a.id}. {a.title} &nbsp;
+                                                    setSelectedMovie(movies[i].title);
+                                                }}>{movies[i].id}. {movies[i].title} &nbsp;
                                                     <span style={{
                                                         color: 'orange',
                                                         border: '2px solid red',
                                                         borderRadius: '5px',
                                                         padding: '3px'
-                                                    }}>{a.age}
+                                                    }}>{movies[i].age}
                                                     </span>
                                                 </div>
                                             </>
@@ -103,6 +106,7 @@ function Booking({data}) {
                                 }
                             </Tab>
                             <Tab eventKey="가나다순" title="가나다순">
+                                {/*Props*/}
                                 {
                                     data
                                         .slice()

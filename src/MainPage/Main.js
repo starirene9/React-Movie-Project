@@ -82,7 +82,6 @@ function Main(props) {
                                                     e.stopPropagation()
                                                     navigate('/booking')
                                                     // dispatch(addItem({type: '테스트', count: 100}))
-                                               음
                                                 }}>예매하기
                                                 </button>
                                             </div>

@@ -49,4 +49,11 @@ function Bookingseat() {
 
 export default Bookingseat;
 
-//
+// session storage : 사이트 끄면 날라감 - 휘발성 있음
+// local storage : 서버 없이도 반영구적으로 저장 가능, 브라우저 안에 있음
+// 개발자 도구 - Application - Local Storage :
+// 1. key & value 형태로 데이터 저장 가능
+// 2. 문자만 저장 가능 - 최대 5mb 까지
+// 3. 사이트 재접속해도 남아 있음 (브라우저 청소하면 삭제됨)
+
+

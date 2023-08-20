@@ -11,13 +11,21 @@ function Main(props) {
     //  페이지 이동을 도와줌
     let [alert, setAlert] = useState(true);
 
-    let state = useSelector((state) => state);
-    let dispatch = useDispatch();
+    // localStorage
+    let obj = {name: 'Gu'}
+    //JSON.stringify(obj) : 사용시 array, obj에 따옴표를 다 쳐줌
+    localStorage.setItem('data', JSON.stringify(obj));
+    let 꺼낸거 = localStorage.getItem('data'); //  {"name":"Gu"}
+    console.log(JSON.parse(꺼낸거)); // JSON.parse 다시 따옴표를 베껴 줌
+    // 상세페이지에서 봤던 상품의 번호들을 localStorage에 저장하기가 숙제
+    // 자료의 이름 watched, array 형태로. 본것에 대해 id를 저장하기 + 주의점! 중복번호는 막기 -> set자료형 사용하면 됨
 
     useEffect(() => {
         // mount(페이지 장착), update(재랜더링시 : 수정/변경), unmount (삭제 시 실행)
         // useEffect 다른 코드 모두 랜더링이 끝나고 동작 실행 : 오래 걸리는 for 문을 이 곳에서 실행
         // 시간이 걸리는 어려운 연산, setTimeout, 서버에서 정보 가져올때 사용
+
+        localStorage.setItem('watched', JSON.stringify([]))
 
         // let a = setTimeout(()=>{setAlert(false)}, 2000) <- 변수에 담아서~
         setTimeout(() => {
@@ -39,16 +47,6 @@ function Main(props) {
     // []안에 state 나 변수 넣기 가능 <- [변수]가 변경이 될 때 실행이 된다.
     // useEffect(()=>{ 실행할코드 }, [])
     // [] 비어 있으면 mount 시 1회만 작동
-
-    // 서버에 ajax 요청 : json 을 잘 변환 해줌
-    // 1. 방법 (GET/POST) : ajax 를 사용 해서 요청
-    // 2. 어떤 자료 (URL) : 서버 개발자에게 물어보기 => 적어 보내라
-    // 1.XMLHttpRequest 2.fetch() 3. axios 라이브러리 사용 : sudo npm install axios
-    // ajax Get 요청은 axios.get('url').then((result)=>{result.data}).catch(()=>{//실패했을 때 코드})
-    // 전송시에는 axios.post('url', {name : 'GU'}) 이렇게 사용하면 됨
-    // url 두개 보내고 싶으면?
-    // Promise.all([axios.get('/url1'), axios.get('/url2')]]
-    // .then(()=>{}) 이런 식으로 하면 됨
 
 
     return (
@@ -72,6 +70,9 @@ function Main(props) {
                                             <div className="col-md-4"
                                                  onClick={() => {
                                                      navigate(`/movie/${i}`)
+                                                     // 클릭 한 것을 localsotrage, watched 에 배열의 형태로 값을 추가한다.setItem
+                                                     // 상단에 띄워 지게 하는 html, css 먼저 작성
+                                                     // getItem 을 상단에 올린다.
                                                  }}
                                             >
                                                 <img src={process.env.PUBLIC_URL + `/image${i + 1}.png`}
@@ -104,6 +105,16 @@ function Main(props) {
 
 export default Main
 
+// 서버에 ajax 요청 : json 을 잘 변환 해줌
+// 1. 방법 (GET/POST) : ajax 를 사용 해서 요청
+// 2. 어떤 자료 (URL) : 서버 개발자에게 물어보기 => 적어 보내라
+// 1.XMLHttpRequest 2.fetch() 3. axios 라이브러리 사용 : sudo npm install axios
+// ajax Get 요청은 axios.get('url').then((result)=>{result.data}).catch(()=>{//실패했을 때 코드})
+// 전송시에는 axios.post('url', {name : 'GU'}) 이렇게 사용하면 됨
+
+// url 두개 보내고 싶으면?
+// Promise.all([axios.get('/url1'), axios.get('/url2')]]
+// .then(()=>{}) 이런 식으로 하면 됨
 // axios.get('https://codingapple1.github.io/shop/data2.json')
 //     .then((result) => {
 //         console.log(result.data) // [{},{},{}]
@@ -118,3 +129,18 @@ export default Main
 //     console.log('가져오기 실패함');
 //     //         movie에 데이터 몇개 추가해주세요 하면 html 도 알아서 생성 됨
 // })
+
+
+// session storage : 사이트 끄면 날라감 - 휘발성 있음
+// local storage : 서버 없이도 반영구적으로 저장 가능, 브라우저 안에 있음
+// 개발자 도구 - Application - Local Storage :
+// 1. key & value 형태로 데이터 저장 가능
+// 2. 문자만 저장 가능 - 최대 5mb 까지
+// 3. 사이트 재접속해도 남아 있음 (브라우저 청소하면 삭제됨)
+
+// localStorage.setItem('age', '30')
+// localStorage.getItem('age');  // 30
+// .removeItem() 하면 삭제 됨
+
+// 데이터 수정하는 문법은 없어서 꺼내서 수정하고 저장하면 됨
+// array, object 저장은 불가한데, json 형태로 바꾸면 저장 가능 : JSON.stringify, JSON.parse

@@ -16,9 +16,11 @@ function Detail(props) {
 
     let {id} = useParams(); // 현재 url의 파라미터가 남음(id)
     // console.log(id); // 1이 남음
-    // let foundMovie = props.movie.find(function(x){
-    //     return x.id === id
-    // }); // 사용시 foundMovie.title
+    let foundMovie = props.movie.find(function(x){
+        return x.id === id
+
+    }); // 사용시 foundMovie.title
+
 
     // let [tab, setTab] = useState(0); 탭전환시 이렇게 사용
     let [trailer, setTrailer] = useState(true);
@@ -27,6 +29,18 @@ function Detail(props) {
     let [like, setLike] = useState(0);
     let [star, setStar] = useState("⭐");
     let [fade, setFade] = useState('');
+
+    // div 둘러 본 영화 0번 클릭함, 1번 클릭함 이런 식으로
+    useEffect(()=>{
+        console.log(foundMovie)
+        // 데이터 수정 문법임
+        let clickedMovie = localStorage.getItem('watched')
+        clickedMovie = JSON.parse(clickedMovie)
+        clickedMovie.push(foundMovie.id)
+        clickedMovie = new Set(clickedMovie) // set에다가 집어넣었다가 : 중복 제거
+        clickedMovie = Array.from(clickedMovie) // 다시 array.from 을 활용해서 배열 형태로 집어 넣는 것임
+        localStorage.setItem('watched', JSON.stringify(clickedMovie))
+    }, [])
 
     useEffect(() => {
         let a = setTimeout(() => {
@@ -49,7 +63,17 @@ function Detail(props) {
             clearTimeout(a); // setTimeout 이니까 clear
             setFade('') // 1.
         }
+
+        console.log(foundMovie)
+        // 데이터 수정 문법임
+        let clickedMovie = localStorage.getItem('watched')
+        clickedMovie = JSON.parse(clickedMovie)
+        clickedMovie.push(foundMovie.id)
+        clickedMovie = new Set(clickedMovie) // set에다가 집어넣었다가 : 중복 제거
+        clickedMovie = Array.from(clickedMovie) // 다시 array.from 을 활용해서 배열 형태로 집어 넣는 것임
+        localStorage.setItem('watched', JSON.stringify(clickedMovie))
     }, []) // detail 전체 페이지에 한 번 줘 봄
+
 
     return (
         <>

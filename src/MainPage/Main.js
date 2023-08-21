@@ -137,10 +137,10 @@ export default Main
 // 1. key & value 형태로 데이터 저장 가능
 // 2. 문자만 저장 가능 - 최대 5mb 까지
 // 3. 사이트 재접속해도 남아 있음 (브라우저 청소하면 삭제됨)
-
+//
 // localStorage.setItem('age', '30')
 // localStorage.getItem('age');  // 30
 // .removeItem() 하면 삭제 됨
-
+//
 // 데이터 수정하는 문법은 없어서 꺼내서 수정하고 저장하면 됨
 // array, object 저장은 불가한데, json 형태로 바꾸면 저장 가능 : JSON.stringify, JSON.parse

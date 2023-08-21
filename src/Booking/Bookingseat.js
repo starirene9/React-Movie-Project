@@ -2,13 +2,20 @@ import button from "bootstrap/js/src/button";
 import {Table} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {addCount} from "../store";
+import './Bookingseat.Module.css';
+import {useState} from "react";
 
 function Bookingseat() {
 
     let state = useSelector((state) => state); // 일단 전체를 가져와 보자
-    console.log(state.people); // [{},{},{},{}]
-
+    // console.log(state.people); // [{},{},{},{}]
     let dispatch = useDispatch(); // state 변경시 필수! <- useDispatch()
+
+    let [divStyle, setDivStyle] = useState({
+        backgroundColor: 'gray',
+        width: '2vh',
+        height: '2vh'
+    });
 
     return (
         <>
@@ -20,24 +27,40 @@ function Bookingseat() {
                     <th colSpan="3" style={{textAlign: 'center'}}>예약 현황</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody  style={{ textAlign : 'center'}}>
                 {
                     state.people.map((a, i) =>
-                        <tr key = {i}>
+                        <tr key={i}>
                             <td>{state.people[i].type}</td>
                             <td>{state.people[i].count}</td>
                             <td>
-                                <button onClick={()=>{
+                                <button onClick={() => {
                                     dispatch(addCount(i))
-                                }}> + </button>
+                                }}> +
+                                </button>
+                            </td>
+                            <td colSpan="3">
+
                             </td>
                         </tr>
                     )
                 }
-                {/*예약 현황에 booking 에 있는 자료들을 끌고 와야함 오키?*/}
                 <tr>
-                    <td colSpan="3" style={{textAlign: 'center'}}>좌석 선택 이미지</td>
-                    <td colSpan="1" style={{textAlign: 'center'}}>좌석 설명</td>
+                    <td colSpan="3">좌석 선택 이미지</td>
+                    <td colSpan="1">좌석 설명</td>
+                </tr>
+                <tr>
+                    <td colSpan="3">좌석들..</td>
+                    <td rowSpan="3" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{...divStyle, backgroundColor : 'red'}}></div>
+                        <span>선택</span>
+                        <div style={divStyle} ></div>
+                        <span>예매 완료</span>
+                        <div style={divStyle} >X</div>
+                        <span>선택 불가</span>
+                        <div style={{...divStyle, backgroundColor : 'green'}} ></div>
+                        <span>장애인석</span>
+                    </td>
                 </tr>
                 </tbody>
             </Table>

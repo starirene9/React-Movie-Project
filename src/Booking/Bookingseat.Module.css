@@ -1,6 +1,12 @@
-/*.seatBox {*/
-/*    !*border: 1px solid lightgray;*!*/
-/*    width: 3vh;*/
-/*    height: 3vh;*/
-/*    background-color: gray;*/
-/*}*/
+.seatDescribe {
+    border: 2px solid red;
+    display: flex;
+    flex-direction : row;
+    justify-content: flex-start;
+    width: 300px;
+    padding: 10px;
+}
+
+.seatDescribe > * {
+    margin-right: 10px;
+}

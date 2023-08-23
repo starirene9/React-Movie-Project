@@ -5,11 +5,14 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {increase} from "../store";
 import button from "bootstrap/js/src/button";
-import {useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+
 
 function Booking({data}) {
     // 모든 항목 클릭 후 좌석 예매 페이지 이동
     let navigate = useNavigate();
+
+    // useHistory 를 사용하면 데이터를 라우트 간에 전달할 수 있다.
 
     // 리덕스 사용
     let locations = useSelector((state) => state.locations)
@@ -50,7 +53,7 @@ function Booking({data}) {
     const canNavigate = selectedMovie && selectedLocation && selectedDate && selectedTime;
     const handleSeatSelectionClick = () => {
         if (canNavigate) {
-            navigate('/booking/seat');
+            navigate('/booking/seat', {state : {canNavigate}});
         } else {
             alert('위의 항목을 모두 선택하셔야 좌석 예매 페이지로 이동합니다.');
         }
@@ -199,7 +202,8 @@ function Booking({data}) {
                 </tr>
                 <tr>
                     <td colSpan="4" style={{color:'red', textAlign :'center', fontWeight:'bolder'}}
-                    onClick={handleSeatSelectionClick}>좌석 선택하기</td>
+                    onClick={handleSeatSelectionClick}>좌석 선택하기
+                    </td>
                 </tr>
                 </tbody>
             </Table>

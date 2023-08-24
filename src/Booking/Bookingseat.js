@@ -6,6 +6,8 @@ import './Bookingseat.Module.css';
 import {useState} from "react";
 import {useLocation} from 'react-router-dom';
 
+// eslint-disable-next-line
+
 function Bookingseat() {
 
     let state = useSelector((state) => state); // 일단 전체를 가져와 보자
@@ -14,13 +16,13 @@ function Bookingseat() {
 
     let [divStyle, setDivStyle] = useState({
         backgroundColor: 'gray',
-        width: '2vh',
-        height: '2vh'
+        width: '3vh',
+        height: '3vh'
     });
 
     // Create a 2D array to represent the seat map : 2차원 배열 생성하기
-    const rows = 14;
-    const columns = 14;
+    const rows = 10;
+    const columns = 10;
 
     // new Array(rows)는 rows 개수만큼의 원소를 가진 배열을 생성
     const seatMap = new Array(rows).fill(null).map(() =>
@@ -31,15 +33,21 @@ function Bookingseat() {
     const seatMapJSX = seatMap.map((row, rowIndex) => ( //  각 행을 JSX로 변환 :  실제로 좌석을 나타내는 <td> 엘리먼트들을 생성하는 작업
         <tr key={rowIndex}>
             {
-                row.map((_, columnIndex) => ( // JavaScript에서 _는 보통 "무시하고 싶은 값"
+                row.map((_, columnIndex) => { // JavaScript에서 _는 보통 "무시하고 싶은 값"
                     // 각 행 내부의 열을 순회하며 JSX로 변환
-                    <td key={columnIndex}>
-                        <div style={divStyle}></div>
-                    </td>
-                ))}
+                    // 알파벳 부분 : 각각 'A'와 'J'의 유니코드 값
+                    const alphabet = String.fromCharCode(columnIndex < 10 ? columnIndex + 65 : columnIndex + 54);
+                    // 숫자 부분
+                    const number = rowIndex + 1;
+                    const seatLabel = `${number}${alphabet}`;
+                    return (
+                        <td key={columnIndex}>
+                            <div style={divStyle}>{seatLabel}</div>
+                        </td>
+                    );
+                })}
         </tr>
     ));
-
 
     //받는 쪽 라우트 컴포넌트에서는 location.state를 통해 전달받은 데이터에 접근
     const location = useLocation();
@@ -91,54 +99,17 @@ function Bookingseat() {
                 }
                 <tr>
                     <td colSpan="4">SCREEN</td>
-                    {/*<td colSpan="1">좌석 설명</td>*/}
                 </tr>
                 <tr>
-                    {/*내부의 <table>을 사용하여 별도의 레이아웃을 만들 수 있습니다.*/}
                     <td colSpan="4">
-                        <table style={{margin: '0 auto'}}>
+                    <div style={{display:'flex', justifyContent:'flex-end'}}>
+                        <table style={{margin: '0 auto' }}>
                             <tbody>
                             {seatMapJSX}
                             </tbody>
                         </table>
-                        <section style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}>
-                            <div className='seatDescribe'>
-                                <div style={{...divStyle, backgroundColor: 'red'}}></div>
-                                <span>선택</span>
-                            </div>
-                            <div className='seatDescribe'>
-                                <div style={divStyle}></div>
-                                <span>예매 완료</span>
-                            </div>
-                            <div className='seatDescribe'>
-                                <div style={divStyle}>X</div>
-                                <span>선택 불가</span>
-                            </div>
-                            <div className='seatDescribe'>
-                                <div style={{...divStyle, backgroundColor: 'green'}}></div>
-                                <span>장애인석</span>
-                            </div>
-                        </section>
-                        {/*</td>*/}
-                        {/*<td style={{*/}
-                        {/*    display: 'flex',*/}
-                        {/*    flexDirection: 'column',*/}
-                        {/*    justifyContent: 'center',*/}
-                        {/*    alignItems: 'center',*/}
-                        {/*}}>*/}
-                        {/*    <div style={{...divStyle, backgroundColor: 'red'}}></div>*/}
-                        {/*    <span>선택</span>*/}
-                        {/*    <div style={divStyle}></div>*/}
-                        {/*    <span>예매 완료</span>*/}
-                        {/*    <div style={divStyle}>X</div>*/}
-                        {/*    <span>선택 불가</span>*/}
-                        {/*    <div style={{...divStyle, backgroundColor: 'green'}}></div>*/}
-                        {/*    <span>장애인석</span>*/}
+                        <SeatExplanation divStyle={divStyle}/>
+                    </div>
                     </td>
                 </tr>
                 </tbody>
@@ -148,6 +119,35 @@ function Bookingseat() {
         ;
 }
 
+
+function SeatExplanation({divStyle}){
+    return(
+        <section style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            // border:'2px solid blue'
+        }}>
+            <div className='seatDescribe'>
+                <div style={{...divStyle, backgroundColor: 'red'}}></div>
+                <span>선택</span>
+            </div>
+            <div className='seatDescribe'>
+                <div style={divStyle}></div>
+                <span>예매 완료</span>
+            </div>
+            <div className='seatDescribe'>
+                <div style={divStyle}>X</div>
+                <span>선택 불가</span>
+            </div>
+            <div className='seatDescribe'>
+                <div style={{...divStyle, backgroundColor: 'green'}}></div>
+                <span>장애인석</span>
+            </div>
+        </section>
+    );
+}
 
 export default Bookingseat;
 

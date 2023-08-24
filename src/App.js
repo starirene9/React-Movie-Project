@@ -4,7 +4,7 @@ import './App.css';
 import Footer from "./MainPage/Footer";
 import {useState} from "react";
 import data from "./data";
-import {Routes, Route, Link, useNavigate} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 import Main from "./MainPage/Main";
 import Detail from "./MainPage/Detail";
 import Booking from "./Booking/Booking";

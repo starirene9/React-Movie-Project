@@ -49,6 +49,12 @@ function Main(props) {
     // [] 비어 있으면 mount 시 1회만 작동
 
 
+    // function 함수(){
+    //     return 반복문10억번돌린결과
+    // }
+    // let result = useMemo(()=>{ return 함수() }, [])
+    // useMemo 안에 넣어두면 컴포넌트 로드시 1회만 실행
+
     return (
         <>
             <div className="body-area">
